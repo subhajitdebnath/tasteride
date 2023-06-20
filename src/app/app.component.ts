@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tasteride';
+
+
+  foods: any[] = [
+    {
+      id: 1,
+      name: 'Pizza'
+    },
+    {
+      id: 2,
+      name: 'Biriyani'
+    }
+  ]
 }
