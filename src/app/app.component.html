@@ -5,8 +5,8 @@
   <button (click)="filterRestaurants(499)">More than 499</button>
   <button (click)="filterRestaurants(299)">More than 299</button>
   <button (click)="filterRestaurants(0)">Clear Filters</button>
-  <button (click)="filterRestaurantsType1('Veg')">Veg</button>
-  <button (click)="filterRestaurantsType2('NonVeeg')">NonVeg</button>
+  <button (click)="filterRestaurantsType('veg')">Veg</button>
+  <button (click)="filterRestaurantsType('nonveg')">NonVeg</button>
 </div>
 
 <ng-container *ngFor="let restaurant of restaurants">
@@ -19,7 +19,7 @@
 </ng-container>
 
 
-<div class="accordion" id="accordionExample">
+<!-- <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -56,7 +56,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!-- https://getbootstrap.com/docs/5.3/ -->

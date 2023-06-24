@@ -14,19 +14,19 @@ export class AppComponent {
       id: 1,
       name: 'Pizza Hut',
       costForTwo: 500,
-      typ: 'NonVeeg'
+      type: 'nonveg'
     },
     {
       id: 2,
       name: 'Dominos',
       costForTwo: 300,
-      typ: 'NonVeeg'
+      type: 'nonveg'
     },
     {
       id: 2,
       name: 'Dhaba Abc',
       costForTwo: 200,
-      typ: 'Veg'
+      type: 'veg'
     }
   ];
 
@@ -39,19 +39,10 @@ export class AppComponent {
     this.restaurants = this.allRestaurants;
     this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
   }
-  filterRestaurantsType1(value: string): void {
+  filterRestaurantsType(value: string): void {
     console.log(value);
     this.restaurants = this.allRestaurants;
-    //this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
-    this.restaurants = this.restaurants.filter(e => e.typ.includes(value));
-
-  }
-
-  filterRestaurantsType2(value: string): void {
-    console.log(value);
-    this.restaurants = this.allRestaurants;
-    //this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
-    this.restaurants = this.restaurants.filter(e => e.typ.includes(value));
+    this.restaurants = this.restaurants.filter(item => item.type === value);
 
   }
 
