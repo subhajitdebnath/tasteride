@@ -13,17 +13,20 @@ export class AppComponent {
     {
       id: 1,
       name: 'Pizza Hut',
-      costForTwo: 500
+      costForTwo: 500,
+      typ: 'NonVeeg'
     },
     {
       id: 2,
       name: 'Dominos',
-      costForTwo: 300
+      costForTwo: 300,
+      typ: 'NonVeeg'
     },
     {
       id: 2,
       name: 'Dhaba Abc',
-      costForTwo: 200
+      costForTwo: 200,
+      typ: 'Veg'
     }
   ];
 
@@ -35,6 +38,21 @@ export class AppComponent {
     console.log(value);
     this.restaurants = this.allRestaurants;
     this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
+  }
+  filterRestaurantsType1(value: string): void {
+    console.log(value);
+    this.restaurants = this.allRestaurants;
+    //this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
+    this.restaurants = this.restaurants.filter(e => e.typ.includes(value));
+
+  }
+
+  filterRestaurantsType2(value: string): void {
+    console.log(value);
+    this.restaurants = this.allRestaurants;
+    //this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
+    this.restaurants = this.restaurants.filter(e => e.typ.includes(value));
+
   }
 
   selectRestaurant(event: any, restaurant: Restaurant): void {

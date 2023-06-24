@@ -5,6 +5,8 @@
   <button (click)="filterRestaurants(499)">More than 499</button>
   <button (click)="filterRestaurants(299)">More than 299</button>
   <button (click)="filterRestaurants(0)">Clear Filters</button>
+  <button (click)="filterRestaurantsType1('Veg')">Veg</button>
+  <button (click)="filterRestaurantsType2('NonVeeg')">NonVeg</button>
 </div>
 
 <ng-container *ngFor="let restaurant of restaurants">
