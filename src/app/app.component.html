@@ -2,21 +2,18 @@
 
 <div class="filters">
   Filters: 
-  <button (click)="filterRestaurants(499)">More than 499</button>
-  <button (click)="filterRestaurants(299)">More than 299</button>
-  <button (click)="filterRestaurants(0)">Clear Filters</button>
-  <button (click)="filterRestaurantsType('veg')">Veg</button>
-  <button (click)="filterRestaurantsType('nonveg')">NonVeg</button>
+  <button (click)="filterRestaurants(i)" *ngFor="let filter of filters; let i = index;">{{filter.name}}</button>
 </div>
 
-<ng-container *ngFor="let restaurant of restaurants">
+<div *ngIf="selectedRestaurant">You have selected: {{selectedRestaurant.name}}</div>
 
-  <div style="margin: 2rem;" class="restaurant" (click)="selectRestaurant1(restaurant)">
-    <div (click)="selectRestaurant($event, restaurant)">{{restaurant.name}}</div>
-    <div>Cost for two: {{restaurant.costForTwo}}</div>
-  </div>
+<ng-container *ngFor="let item of restaurants">
+
+  <app-restaurant [restaurant]="item" (chooseRestaurant)="showRestaurant($event)"></app-restaurant>
 
 </ng-container>
+
+<!-- 1. Add child components for filters -->
 
 
 <!-- <div class="accordion" id="accordionExample">

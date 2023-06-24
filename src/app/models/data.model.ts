@@ -5,3 +5,9 @@ export interface Restaurant {
     costForTwo: number;
     type: 'veg' | 'nonveg';
 }
+
+export interface Filter {
+    name: string;
+    value: string | number;
+    type: 'cost' | 'type' | 'reset';
+}

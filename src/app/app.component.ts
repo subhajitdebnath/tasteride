@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Restaurant } from './models/data.model';
+import { Filter, Restaurant } from './models/data.model';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import { Restaurant } from './models/data.model';
 export class AppComponent {
   title = 'tasteride';
   loader = false;
+  selectedRestaurant: Restaurant;
   restaurants: Restaurant[] = [
     {
       id: 1,
@@ -30,32 +31,46 @@ export class AppComponent {
     }
   ];
 
-  selectedRestaurant!: Restaurant;
+  filters: Filter[] = [
+    {
+      name: 'More than 499',
+      value: 499,
+      type: 'cost',
+    },{
+      name: 'More than 299',
+      value: 299,
+      type: 'cost',
+    },{
+      name: 'Veg',
+      value: 'veg',
+      type: 'type',
+    },{
+      name: 'Non Veg',
+      value: 'nonveg',
+      type: 'type',
+    },{
+      name: 'Clear Filters',
+      value: 0,
+      type: 'reset',
+    }
+  ];
+
 
   allRestaurants = this.restaurants;
 
-  filterRestaurants(value: number): void {
-    console.log(value);
+  filterRestaurants(index: number): void {
+    let filter: Filter = this.filters[index];
     this.restaurants = this.allRestaurants;
-    this.restaurants = this.restaurants.filter(item => item.costForTwo > value);
-  }
-  filterRestaurantsType(value: string): void {
-    console.log(value);
-    this.restaurants = this.allRestaurants;
-    this.restaurants = this.restaurants.filter(item => item.type === value);
 
-  }
-
-  selectRestaurant(event: any, restaurant: Restaurant): void {
-    this.selectedRestaurant = restaurant;
-    console.log(event);
-    event.stopPropagation();
-    alert(this.selectedRestaurant.name);
+    if(filter.type === 'cost') {
+      this.restaurants = this.restaurants.filter(item => item.costForTwo > +filter.value);
+    } else if(filter.type === 'type') {
+      this.restaurants = this.restaurants.filter(item => item.type === filter.value);
+    }
   }
 
-  selectRestaurant1(restaurant: Restaurant): void {
-    this.selectedRestaurant = restaurant;
-
-    alert(this.selectedRestaurant.costForTwo);
+  showRestaurant(e: any): void {
+    console.log(e);
+    this.selectedRestaurant = e;
   }
 }
