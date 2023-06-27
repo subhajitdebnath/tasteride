@@ -71,7 +71,7 @@ export class AppComponent {
   }
 
   showRestaurant(e: any): void {
-    console.log(e);
+    // console.log(e);
     this.selectedRestaurant = e;
   }
   showFilter(e: any): void {
@@ -85,5 +85,17 @@ export class AppComponent {
     }
     
     this.selectedFilter = e;
+  }
+
+  // getChange() {
+  //   console.log('test');
+  // }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit');
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit');
   }
 }
