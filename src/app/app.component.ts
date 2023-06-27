@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'tasteride';
   loader = false;
   selectedRestaurant: Restaurant;
+  selectedFilter: Filter;
   restaurants: Restaurant[] = [
     {
       id: 1,
@@ -72,5 +73,17 @@ export class AppComponent {
   showRestaurant(e: any): void {
     console.log(e);
     this.selectedRestaurant = e;
+  }
+  showFilter(e: any): void {
+    console.log(e);
+    this.restaurants = this.allRestaurants;
+
+    if(e.type === 'cost') {
+      this.restaurants = this.restaurants.filter(item => item.costForTwo > +e.value);
+    } else if(e.type === 'type') {
+      this.restaurants = this.restaurants.filter(item => item.type === e.value);
+    }
+    
+    this.selectedFilter = e;
   }
 }

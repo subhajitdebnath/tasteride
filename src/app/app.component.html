@@ -1,8 +1,11 @@
 
-
-<div class="filters">
-  Filters: 
-  <button (click)="filterRestaurants(i)" *ngFor="let filter of filters; let i = index;">{{filter.name}}</button>
+<div>Filters:
+<span *ngFor="let item of filters;" class="filters">
+   
+  <app-filter [filter]="item" (chooseFilter)="showFilter($event)"></app-filter>
+  <!-- <button (click)="filterRestaurants(i)" *ngFor="let filter of filters; let i = index;">{{filter.name}}</button> -->
+  
+</span>
 </div>
 
 <div *ngIf="selectedRestaurant">You have selected: {{selectedRestaurant.name}}</div>
