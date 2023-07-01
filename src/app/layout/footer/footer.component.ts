@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Filter, Restaurant } from 'src/app/models/data.model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  filter: Filter;
 
+  constructor(
+    private dataService: DataService
+  ) {}
+
+  ngOnInit() {
+
+
+    this.dataService.filterClicked.subscribe((res: any) => {
+      console.log(res);
+      this.refreshFilter();
+    });
+  }
+
+  refreshFilter(): void {
+    this.filter = this.dataService.selectedFilter;
+  }
 }
