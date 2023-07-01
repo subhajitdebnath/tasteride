@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Filter, Restaurant } from './models/data.model';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -56,8 +57,14 @@ export class AppComponent {
     }
   ];
 
+  products: any[] = [];
+
 
   allRestaurants = this.restaurants;
+
+  constructor(
+    private apiService: ApiService,
+  ) {}
 
   filterRestaurants(index: number): void {
     let filter: Filter = this.filters[index];
@@ -97,5 +104,12 @@ export class AppComponent {
 
   ngOnInit() {
     console.log('ngOnInit');
+
+    // this.apiService.getProducts().subscribe((res: any) => {
+    //   console.log(res);
+    //   this.products = res.products;
+    // }, err => {
+    //   console.log(err);
+    // })
   }
 }

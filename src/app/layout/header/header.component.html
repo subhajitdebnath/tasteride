@@ -1,5 +1,14 @@
 <nav class="navbar navbar-dark bg-dark">
-    <a *ngIf="restaurant" class="navbar-brand" href="#">{{restaurant.name}}</a>
+    <!-- <a *ngIf="restaurant" class="navbar-brand" href="#">{{restaurant.name}}</a> -->
+
+    <div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" routerLink="login">Login</a>
+            <a class="nav-link" routerLink="dashboard">Dashboard</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <!-- {{selectedRestaurant | json}} -->
