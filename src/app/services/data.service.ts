@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Restaurant } from '../models/data.model';
+import { Filter, Restaurant } from '../models/data.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -15,6 +15,13 @@ export class DataService {
       type: 'nonveg'
     }
   ];
+  private filters: Filter[] = [
+    {
+      name: 'More than 499',
+      value: 499,
+      type: 'cost'
+    }
+  ];
 
   test: Restaurant[] = [
     {
@@ -27,8 +34,13 @@ export class DataService {
 
   selectedRestaurant: Restaurant;
   restaurantClicked = new BehaviorSubject(false);
+  selectedFilter : Filter;
+  filterClicked = new BehaviorSubject(false);
 
   constructor() { }
+  getFilters() : Filter[] {
+    return this.filters;
+  }
 
   getRestaurants(): Restaurant[] {
     return this.restaurants;

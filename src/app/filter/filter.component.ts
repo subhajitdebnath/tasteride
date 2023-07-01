@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Filter, Restaurant } from '../models/data.model';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-filter',
@@ -9,9 +10,16 @@ import { Filter, Restaurant } from '../models/data.model';
 export class FilterComponent {
   @Input() filter: Filter;
   @Output() chooseFilter = new EventEmitter();
+
+  constructor(
+    private dataService: DataService
+  ) {}
   
   selectFilter(filter: Filter): void {
     this.chooseFilter.emit(filter);
+
+    this.dataService.selectedFilter = filter;
+    this.dataService.filterClicked.next(true);
   }
 
 }
