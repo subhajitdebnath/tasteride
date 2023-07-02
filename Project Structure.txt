@@ -1,0 +1,15 @@
+
+
+Project - E-commerce
+
+- Auth Independent Module
+- Pre Auth Module
+- Post Auth Module
+
+- Shared Module
+
+
+
+App module
+
+App component -> <router-outlet>
