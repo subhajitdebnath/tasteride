@@ -105,11 +105,11 @@ export class AppComponent {
   ngOnInit() {
     console.log('ngOnInit');
 
-    // this.apiService.getProducts().subscribe((res: any) => {
-    //   console.log(res);
-    //   this.products = res.products;
-    // }, err => {
-    //   console.log(err);
-    // })
+    this.apiService.getProducts().subscribe((res: any) => {
+      console.log(res);
+      this.products = res.products;
+    }, err => {
+      console.log(err);
+    })
   }
 }

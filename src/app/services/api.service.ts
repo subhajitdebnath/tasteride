@@ -12,6 +12,6 @@ export class ApiService {
   ) { }
 
   getProducts() {
-    return this.http.get('https://dummyjson.com/productsgdfgdfg').pipe(map(response => response));
+    return this.http.get('https://dummyjson.com/products').pipe(map(response => response));
   }
 }
