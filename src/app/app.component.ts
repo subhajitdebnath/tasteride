@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Filter, Restaurant } from './models/data.model';
+import { Filter, Restaurant } from './core/models/data.model';
 import { ApiService } from './services/api.service';
 
 @Component({
