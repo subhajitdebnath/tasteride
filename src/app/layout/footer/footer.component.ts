@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Filter, Restaurant } from 'src/app/models/data.model';
+import { Filter, Restaurant } from 'src/app/core/models/data.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
