@@ -1,1 +1,19 @@
-<p>sing-in works!</p>
+<div class="container">
+    <div class="card signin-card">
+        <div class="card-body">
+            <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm)">
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="emailInput" formControlName="username">
+                    <div id="emailHelp" class="form-text" *ngIf="signinForm.get('username')?.invalid && loginSubmitted">Please enter a valid email</div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordInput" formControlName="password">
+                    <div id="emailHelp" class="form-text" *ngIf="signinForm.get('password')?.invalid && loginSubmitted">Please enter a valid password</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+    </div>
+</div>
