@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private auth = false;
+  private auth = true;
 
   constructor() { }
 
