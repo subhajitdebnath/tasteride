@@ -9,27 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
-  signinForm: FormGroup;
+  signUpForm: FormGroup;
   loginSubmitted = false;
   loginSubmitLoader = false;
-  userName: string;
-  passWord: string;
-  city: string;
-  Cities = [
+  cities = [
+    "",
     "Bangalore",
     "Bhubaneswar",
     "Kolkata",
     "Delhi",
-  ]
-  selected = "City"
-  select: FormGroup;
-  defaultState : string;
-  
-  
-  update(e){
-    this.city = e.target.value
-
-  }
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -38,38 +27,40 @@ export class SignUpComponent {
   ) {}
 
   ngOnInit(): void {
-    this.signinForm = this.fb.group({
+    this.signUpForm = this.fb.group({
       username: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      city: ['', [Validators.required]],
     });
   }
 
   onSubmit(form: FormGroup): void {
-    console.log(form);
+    console.log(form.value);
+    Object.values(this.signUpForm.value)
+    // this.signUpForm.reset();
     this.loginSubmitted = true;
-    this.userName = form.value.username;
-    this.passWord = form.value.password;
-    this.city = this.city;
+    // this.userName = form.value.username;
+    // this.passWord = form.value.password;
+    // this.city = this.city;
 
-    if(!form.valid) {
-      return;
-    }
-    console.log(form.value, form.valid);
-    let payload = {
-      username: 'kminchelle',
-      password: '0lelplR',
-    }
-    this.authService.login(payload).subscribe(res => {
-      console.log(res);
-      this.toastr.success('Login Successful', 'Success!');
-    }, err => {
-      console.log(err.error.message);
-      this.toastr.error(err.error.message, 'Error!');
-    })
-    this.signinForm.reset();
-    this.defaultState = 'City';
-    console.log(this.defaultState);
-    this.select.reset(this.defaultState);
+    // if(!form.valid) {
+    //   return;
+    // }
+    // console.log(form.value, form.valid);
+    // let payload = {
+    //   username: 'kminchelle',
+    //   password: '0lelplR',
+    // }
+    // this.authService.login(payload).subscribe(res => {
+    //   console.log(res);
+    //   this.toastr.success('Login Successful', 'Success!');
+    // }, err => {
+    //   console.log(err.error.message);
+    //   this.toastr.error(err.error.message, 'Error!');
+    // })
+    // this.defaultState = 'City';
+    // console.log(this.defaultState);
+    // this.select.reset(this.defaultState);
   }
 
 
