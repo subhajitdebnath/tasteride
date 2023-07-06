@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-sing-in',
@@ -17,7 +19,9 @@ export class SingInComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private lsService: LocalStorageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,11 @@ export class SingInComponent {
     this.authService.login(payload).subscribe(res => {
       console.log(res);
       this.toastr.success('Login Successful', 'Success!');
+
+      // store user auth data into localstorage
+      this.lsService.setLSData('auth', res);
+      this.authService.getAuthState();
+      this.router.navigate(['']);
     }, err => {
       console.log(err.error.message);
       this.toastr.error(err.error.message, 'Error!');

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class ApiService {
   ) { }
 
   getProducts() {
-    return this.http.get('https://dummyjson.com/products').pipe(map(response => response));
+    return this.http.get(environment.serverURL + 'products').pipe(map(response => response));
   }
 }

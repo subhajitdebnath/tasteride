@@ -1,4 +1,17 @@
 
+<!-- {{userInfo | json}} -->
+<div *ngIf="userInfo">
+    <div>Logged In User: <b>{{userInfo.firstName}} {{userInfo.lastName}}</b></div>
+    <button (click)="logout()">Logout</button>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<div *ngIf="!userInfo">
+    <button (click)="login()">Login</button>
+</div>
+
 <div *ngFor="let product of productList">
     <a routerLink="product/{{product.id}}">{{product.name}}</a>
 </div>
