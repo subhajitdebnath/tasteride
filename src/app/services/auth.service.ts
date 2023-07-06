@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class AuthService {
 
-  private auth = true;
+  private auth = false;
 
   constructor(
     private http: HttpClient

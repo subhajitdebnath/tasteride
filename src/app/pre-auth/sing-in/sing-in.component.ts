@@ -37,7 +37,7 @@ export class SingInComponent {
     console.log(form.value, form.valid);
     let payload = {
       username: 'kminchelle',
-      password: '0lelplR--',
+      password: '0lelplR',
     }
     this.authService.login(payload).subscribe(res => {
       console.log(res);
