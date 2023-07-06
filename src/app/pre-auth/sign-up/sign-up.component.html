@@ -1,2 +1,48 @@
-<p>sign-up works!</p>
+
  <!-- create a signup form with inputs like name email password and city(dropdown) and add validation for all the fields. submit the form and show the data in the UI. and reset the form. -->
+ <div class="container">
+    <div class="card signin-card">
+        <div class="card-body">
+            <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm)">
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="emailInput" formControlName="username">
+                    <div id="emailHelp" class="form-text" *ngIf="signinForm.get('username')?.invalid && loginSubmitted">Please enter a valid email</div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordInput" formControlName="password">
+                    <div id="emailHelp" class="form-text" *ngIf="signinForm.get('password')?.invalid && loginSubmitted">Please enter a valid password</div>
+                </div>
+                <!-- <div class="btn-group">
+                    <button type="button"  class="btn btn-danger">City</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul  class="dropdown-menu">
+                        
+                        <li *ngFor="let city of Cities" class="dropdown-item" type="button" [value]="city" formControlName="city"><button>{{city}}</button></li>
+                        
+                    </ul>
+                  </div> -->
+                  <div>
+                    <select (change)="update($event)" class="form-control" >
+                        <option value="default">City</option>
+                        <option *ngFor="let city of Cities" [value]="city">
+                            {{city}}
+                        </option>
+                    </select>
+
+                  </div>
+                  <div class="signin-btn" >
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="loginSubmitted">
+<div><span> Email : {{userName}}</span></div>
+<div><span> Password : {{passWord}}</span></div>
+<div><span> city : {{city}}</span></div>
+</div>
