@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth-independent/auth-independent.module').then(m => m.AuthIndependentModule)
   },
   {
-    path: 'authentication',
+    path: 'auth',
     component: PreAuthComponent,
     canActivate: [loginGuard],
     loadChildren: () => import('./pre-auth/pre-auth.module').then(m => m.PreAuthModule)
