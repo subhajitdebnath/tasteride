@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,36 +9,24 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  userInfo: any;
-  productList: any[] = [
-    {
-      id: 1,
-      name: 'Iphone 14'
-    },{
-      id: 2,
-      name: 'Macbook Pro M1'
-    }
-  ];
+  
+  products: any[] = [];
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
-    if(this.authService.isAuthenticated()) {
-      this.userInfo = this.authService.userInfo;
-    }
-
-    console.log(this.userInfo);
+    this.getProducts();
   }
 
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['auth']);
-  }
-
-  login(): void {
-    this.router.navigate(['auth']);
+  getProducts(): void {
+    this.apiService.getProducts().subscribe({
+      next: (res: any) => {
+        console.log(res.products);
+        this.products = res.products;
+      },
+      error: err => console.error(err),
+    });
   }
 }

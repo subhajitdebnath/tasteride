@@ -15,4 +15,8 @@ export class ApiService {
   getProducts() {
     return this.http.get(environment.serverURL + 'products').pipe(map(response => response));
   }
+
+  getProductById(id: string) {
+    return this.http.get(environment.serverURL + 'products/' + id).pipe(map(response => response));
+  }
 }

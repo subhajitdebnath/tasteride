@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/core/models/data.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -8,27 +10,27 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  restaurant: Restaurant;
+  userInfo: any;
 
   constructor(
-    private dataService: DataService
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
-    // console.log(this.dataService.getRestaurants());
-    // console.log(this.dataService.test)
-    // this.dataService.test = [];
-    // console.log(this.dataService.test)
+    if(this.authService.isAuthenticated()) {
+      this.userInfo = this.authService.userInfo;
+    }
 
-    // this.restaurant = this.dataService.selectedRestaurant;
-
-    this.dataService.restaurantClicked.subscribe((res: any) => {
-      console.log(res);
-      this.refreshRestaurant();
-    });
+    console.log(this.userInfo);
   }
 
-  refreshRestaurant(): void {
-    this.restaurant = this.dataService.selectedRestaurant;
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['auth']);
+  }
+
+  login(): void {
+    this.router.navigate(['auth']);
   }
 }

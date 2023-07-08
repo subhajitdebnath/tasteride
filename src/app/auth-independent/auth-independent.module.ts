@@ -5,6 +5,7 @@ import { AuthIndependentRoutingModule } from './auth-independent-routing.module'
 import { AuthIndependentComponent } from './auth-independent.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { LayoutModule } from '../layout/layout.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   ],
   imports: [
     CommonModule,
-    AuthIndependentRoutingModule
+    AuthIndependentRoutingModule,
+    LayoutModule
   ]
 })
 export class AuthIndependentModule { }
