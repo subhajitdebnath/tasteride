@@ -28,6 +28,8 @@ export class HomeComponent {
     if(this.authService.isAuthenticated()) {
       this.userInfo = this.authService.userInfo;
     }
+
+    console.log(this.userInfo);
   }
 
   logout(): void {

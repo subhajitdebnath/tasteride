@@ -17,6 +17,7 @@ export class AuthService {
     private lsService: LocalStorageService,
   ) {
     this.getAuthState();
+    console.log(this.auth);
   }
 
   isAuthenticated(): boolean {
@@ -39,8 +40,8 @@ export class AuthService {
   }
 
   logout() {
-    this.getAuthState();
     this.lsService.removeLSData('auth');
+    this.getAuthState();
   }
 
 }
