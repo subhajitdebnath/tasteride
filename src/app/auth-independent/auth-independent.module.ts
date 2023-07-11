@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { LayoutModule } from '../layout/layout.module';
 import { SearchComponent } from './search/search.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SearchComponent } from './search/search.component';
   imports: [
     CommonModule,
     AuthIndependentRoutingModule,
-    LayoutModule
+    LayoutModule,
+    NgxDatatableModule
   ]
 })
 export class AuthIndependentModule { }

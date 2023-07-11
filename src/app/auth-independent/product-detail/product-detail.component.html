@@ -15,3 +15,15 @@
 </div>
 
 <!-- Show all the product details here from the product array -->
+
+<ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]"
+    [columnMode]="ColumnMode.force"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="10"
+      >
+</ngx-datatable>
