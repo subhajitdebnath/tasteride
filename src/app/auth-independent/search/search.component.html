@@ -1,0 +1,28 @@
+<div class="container text-center">
+    <!-- filters like: price, rating filter -->
+    <!-- dropdown > 1 - 5 > apply button -->
+    <!-- min - max  -->
+    <!-- reset button -->
+    <h2>Total Products: {{products.length}}</h2>
+    <div class="row align-items-start">
+        <div class="col product-card" *ngFor="let product of products">
+            <div class="card" style="width: 18rem;">
+                <div [ngStyle]="{background: 'url(' + product.images[0] + ')', height: '10rem', 'background-size': 'cover'}"></div>
+                <div class="card-body">
+                  <h5 class="card-title product-link"><a (click)="toProductDetail(product.id)">{{product.title}}</a></h5>
+                  <p class="card-text" [title]="product.description">{{ (product.description.length>60)? (product.description | slice:0:60)+'...':(product.description) }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span class="original-price-cut">${{product.price + product.discountPercentage}}</span>
+                        ${{product.price}}
+                    </li>
+                </ul>
+                <!-- <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div> -->
+              </div>
+        </div>
+    </div>
+</div>

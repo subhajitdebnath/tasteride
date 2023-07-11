@@ -6,13 +6,15 @@ import { AuthIndependentComponent } from './auth-independent.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { LayoutModule } from '../layout/layout.module';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
   declarations: [
     AuthIndependentComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
