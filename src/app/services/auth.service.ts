@@ -17,7 +17,7 @@ export class AuthService {
     private lsService: LocalStorageService,
   ) {
     this.getAuthState();
-    console.log(this.auth);
+    // console.log(this.auth);
   }
 
   isAuthenticated(): boolean {

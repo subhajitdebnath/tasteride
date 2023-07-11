@@ -22,7 +22,7 @@ export class HeaderComponent {
       this.userInfo = this.authService.userInfo;
     }
 
-    console.log(this.userInfo);
+    // console.log(this.userInfo);
   }
 
   logout(): void {
