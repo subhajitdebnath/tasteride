@@ -14,7 +14,10 @@ const routes: Routes = [
   },{
     path: 'search/:keyword',
     component: SearchComponent
-  },
+  },{
+    path: 'search',
+    component: SearchComponent
+  }
 ];
 
 @NgModule({

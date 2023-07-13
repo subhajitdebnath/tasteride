@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/core/services/api.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -522,6 +523,7 @@ export class ProductDetailComponent {
 
   constructor(
     private apiService: ApiService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {
     this.productId = this.route.snapshot.paramMap.get('id');
@@ -539,5 +541,12 @@ export class ProductDetailComponent {
       },
       error: err => console.error(err),
     });
+  }
+
+  addToCart(): void {
+    let productPayload = {
+      ...this.product, quantity: 1
+    };
+    this.cartService.addCart(productPayload);
   }
 }

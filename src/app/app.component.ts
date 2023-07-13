@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Filter, Restaurant } from './core/models/data.model';
-import { ApiService } from './services/api.service';
+import { ApiService } from './core/services/api.service';
 
 @Component({
   selector: 'app-root',

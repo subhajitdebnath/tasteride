@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/core/models/data.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class HeaderComponent {
   userInfo: any;
-  keyword: string;
+  keyword: string = '';
 
   constructor(
     private authService: AuthService,
@@ -37,6 +37,11 @@ export class HeaderComponent {
 
   search(): void {
     // console.log('search', this.keyword)
-    this.router.navigate(['search', this.keyword]);
+    // this.router.navigate(['search', this.keyword]);
+    this.router.navigateByUrl('/search/' + this.keyword);
+  }
+
+  goToHome():void {
+    this.router.navigate(['']);
   }
 }
