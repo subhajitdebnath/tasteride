@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Filter, Restaurant } from 'src/app/core/models/data.model';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-footer',
