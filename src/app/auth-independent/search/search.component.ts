@@ -27,7 +27,8 @@ export class SearchComponent {
     this.route.paramMap.subscribe( paramMap => {
       this.keyword = paramMap.get('keyword');
       console.log(this.keyword);
-
+      
+      this.keyword = !this.keyword ? '' : this.keyword;
       this.searchProducts();
     });
   }
@@ -45,23 +46,30 @@ export class SearchComponent {
   toProductDetail(productId: string): void {
     this.router.navigate(['product', productId]);
   }
-  valueSelected(e):void{
-      console.log(e.rate);
-      this.apiService.searchProducts(this.keyword).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.products = res.products;
-          this.products = this.products.filter((x) => x.rating >= e.rate );
-          if(e.min!='' && e.max!=''){
-            this.products = this.products.filter((x) => x.price >= e.min && x.price <= e.max)
-          }
+  globalFilter(e):void{
+    console.log(e.rate);
+    this.apiService.searchProducts(this.keyword).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.products = res.products;
+        this.products = this.products.filter((x) => x.rating >= e.rate);
+        if(e.min!='' || e.max!=''){
+          e.min = e.min === '' ? 0 : e.min;
+          e.max = e.max === '' ? Infinity : e.max;
+          this.products = this.products.filter((x) => x.price >= e.min && x.price <= e.max)
+        }
 
-        },
-        error: err => console.error(err),
-      });
-      console.log(this.products);
+      },
+      error: err => console.error(err),
+    });
+    console.log(this.products);
+  }
 
-    
+  resetFilter() :void {
+    this.minPrice = '';
+    this.maxPrice = '';
+    this.ratin = '';
 
+    this.searchProducts();
   }
 }

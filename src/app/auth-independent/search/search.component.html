@@ -8,8 +8,8 @@
       <!-- <select  [(ngModel)]="products" (ngModelChange)="valueSelected($event)"> -->
         <select #rating type="number" [(ngModel)]="ratin">
       <option [value]=0>Select</option>
+      <option [value]=4>4</option>
       <option [value]=4.5>4.5</option>
-      <option [value]=5>5</option>
       </select>
       <label>MinPrice</label>
         <input type="number" 
@@ -32,7 +32,8 @@
             [(ngModel)]="maxPrice" 
             name="maxRateInput">
 
-      <button class="btn btn-outline-success" type="button"  (click)="valueSelected({rate:rating.value, min: min.value, max: max.value});rating.value=''; min.value=''; max.value=''">Apply</button>
+      <button class="btn btn-outline-success" type="button" (click)="globalFilter({rate:rating.value, min: min.value, max: max.value});">Apply</button>
+      <button class="btn btn-outline-success" type="button" (click)="resetFilter()">Reset</button>
    </div>
     <h2>Total Products: {{products.length}}</h2>
     <div class="row align-items-start">

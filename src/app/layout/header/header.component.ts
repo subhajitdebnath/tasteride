@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class HeaderComponent {
   userInfo: any;
-  keyword: string;
+  keyword: string = '';
 
   constructor(
     private authService: AuthService,
@@ -37,6 +37,11 @@ export class HeaderComponent {
 
   search(): void {
     // console.log('search', this.keyword)
-    this.router.navigate(['search', this.keyword]);
+    // this.router.navigate(['search', this.keyword]);
+    this.router.navigateByUrl('/search/' + this.keyword);
+  }
+
+  goToHome():void {
+    this.router.navigate(['']);
   }
 }
