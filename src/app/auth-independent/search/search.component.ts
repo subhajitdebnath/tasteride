@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,11 +11,17 @@ import { ApiService } from 'src/app/services/api.service';
 export class SearchComponent {
   keyword: any;
   products: any[] = [];
+  minPrice: any;
+  maxPrice: any;
+  ratin: any;
+  sourceTypeControl = new FormControl('');
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+   
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
@@ -37,5 +44,24 @@ export class SearchComponent {
 
   toProductDetail(productId: string): void {
     this.router.navigate(['product', productId]);
+  }
+  valueSelected(e):void{
+      console.log(e.rate);
+      this.apiService.searchProducts(this.keyword).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.products = res.products;
+          this.products = this.products.filter((x) => x.rating >= e.rate );
+          if(e.min!='' && e.max!=''){
+            this.products = this.products.filter((x) => x.price >= e.min && x.price <= e.max)
+          }
+
+        },
+        error: err => console.error(err),
+      });
+      console.log(this.products);
+
+    
+
   }
 }

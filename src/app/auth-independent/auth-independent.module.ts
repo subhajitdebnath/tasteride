@@ -8,6 +8,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { LayoutModule } from '../layout/layout.module';
 import { SearchComponent } from './search/search.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     CommonModule,
     AuthIndependentRoutingModule,
     LayoutModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthIndependentModule { }
