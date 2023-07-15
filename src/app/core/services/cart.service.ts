@@ -7,6 +7,8 @@ import { LocalStorageService } from './local-storage.service';
 export class CartService {
 
   cartDetail: any[] = [];
+  quantity: any;
+  resArr: any[];
 
   constructor(
     private lsService: LocalStorageService
@@ -19,7 +21,17 @@ export class CartService {
   }
 
   addCart(payload): void {
+    console.log(payload);
+    this.lsService.removeLSData('cart');
+    this.lsService.setLSData('cart', payload);
+  }
+  addNewCart(payload): void {
+    console.log(payload);
     this.cartDetail.push(payload);
+    this.resArr = Array.from(new Set(this.cartDetail.map(obj => JSON.stringify(obj))))
+      .map(str => JSON.parse(str));
+    this.quantity = (this.cartDetail.filter((x) => x.id == payload.id)).length;
+    this.lsService.removeLSData('cart');
     this.lsService.setLSData('cart', this.cartDetail);
   }
 }
