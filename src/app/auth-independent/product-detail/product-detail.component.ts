@@ -553,36 +553,9 @@ export class ProductDetailComponent {
   }
 
   addToCart(): void {
-    this.cartDetails = this.lsService.getLSData('cart');
-    
-    if(this.cartDetails)
-    {
-      let productPayload = {
-        ...this.product, quantity:1
-      };
-      this.resArr = Array.from(new Set(this.cartDetails.map(obj => JSON.stringify(obj))))
-      .map(str => JSON.parse(str));
-      this.duplicateProductArr = this.cartDetails.filter((x) => x.id == this.product.id);
-      if((this.cartDetails.filter((x) => x.id == this.product.id)).length > 0){
-      this.duplicateProduct = this.duplicateProductArr[0];
-      this.quantity = (this.cartDetails.filter((x) => x.id == this.product.id)).length;
-      this.duplicateProduct.quantity = this.duplicateProduct.quantity + 1;
-      productPayload = this.duplicateProduct;
-      }
-      const indexToRemove = this.resArr.findIndex(obj => obj.id === this.product.id);
-      if (indexToRemove !== -1) {
-        this.resArr.splice(indexToRemove, 1);
-      }
-      this.cartDetails = this.resArr;
-      this.cartDetails.push(productPayload);
-      return this.cartService.addCart(this.cartDetails);
-    }
-   else{
     let productPayload = {
       ...this.product, quantity:1
     };
-    return this.cartService.addNewCart(productPayload);
-
-   }
+    this.cartService.addCart(productPayload);
   }
 }

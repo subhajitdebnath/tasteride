@@ -17,21 +17,20 @@ export class CartService {
     if(cart) {
       this.cartDetail = cart;
     }
-    console.log(this.cartDetail)
+    // console.log(this.cartDetail)
   }
 
   addCart(payload): void {
-    console.log(payload);
-    this.lsService.removeLSData('cart');
-    this.lsService.setLSData('cart', payload);
-  }
-  addNewCart(payload): void {
-    console.log(payload);
-    this.cartDetail.push(payload);
-    this.resArr = Array.from(new Set(this.cartDetail.map(obj => JSON.stringify(obj))))
-      .map(str => JSON.parse(str));
-    this.quantity = (this.cartDetail.filter((x) => x.id == payload.id)).length;
-    this.lsService.removeLSData('cart');
+    // console.log(payload);
+
+    /** Checking if product already exists in the cart */
+    let productIndex = this.cartDetail.findIndex(item => item.id === payload.id);
+    // console.log(productIndex);
+    if(productIndex >=0) {
+      this.cartDetail[productIndex].quantity += 1;
+    } else {
+      this.cartDetail.push(payload);
+    }
     this.lsService.setLSData('cart', this.cartDetail);
   }
 }
