@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,15 @@ export class CartService {
   quantity: any;
   resArr: any[];
 
+  cart = new BehaviorSubject(this.cartDetail);
+
   constructor(
     private lsService: LocalStorageService
   ) {
     let cart = this.lsService.getLSData('cart');
     if(cart) {
       this.cartDetail = cart;
+      this.changeCart();
     }
     // console.log(this.cartDetail)
   }
@@ -31,6 +35,13 @@ export class CartService {
     } else {
       this.cartDetail.push(payload);
     }
+    this.changeCart();
     this.lsService.setLSData('cart', this.cartDetail);
   }
+
+  changeCart(): void {
+    this.cart.next(this.cartDetail);
+  }
+
+
 }

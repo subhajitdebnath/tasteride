@@ -545,7 +545,7 @@ export class ProductDetailComponent {
   getProductById(): void {
     this.apiService.getProductById(this.productId).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.product = res;
       },
       error: err => console.error(err),

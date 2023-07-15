@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/core/models/data.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CartService } from 'src/app/core/services/cart.service';
 import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
@@ -12,9 +13,12 @@ import { DataService } from 'src/app/core/services/data.service';
 export class HeaderComponent {
   userInfo: any;
   keyword: string = '';
+  cart: any[] = [];
+  cartLength = 0;
 
   constructor(
     private authService: AuthService,
+    private cartService: CartService,
     private router: Router,
   ) {}
 
@@ -23,6 +27,7 @@ export class HeaderComponent {
       this.userInfo = this.authService.userInfo;
     }
 
+    this.getCart();
     // console.log(this.userInfo);
   }
 
@@ -43,5 +48,21 @@ export class HeaderComponent {
 
   goToHome():void {
     this.router.navigate(['']);
+  }
+
+  getCart(): void {
+    this.cartService.cart.subscribe(cart => {
+      console.log(cart);
+      this.cart = cart;
+      this.getCartLength();
+    });
+  }
+
+  getCartLength(): void {
+    this.cartLength = this.cart.length; // find out the exact count as homework
+  }
+
+  goToCart(): void {
+    this.router.navigate(['user', 'cart']);
   }
 }
