@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-
+  count = 0;
   cart: any[] = [];
   
   constructor(
@@ -27,17 +27,23 @@ export class CartComponent {
     this.cart = this.cartService.cartDetail;
 
   }
-  removeCart(productId: string): void {
-    this.cart = this.cartService.cartDetail;
-    let productIndex = this.cart.findIndex(item => item.id === productId);
-    console.log(productIndex);
-    if (productIndex !== -1) {
-    this.cart.splice(productIndex, 1);
-    console.log(this.cart);
-    this.lsService.removeLSData('cart');
-    this.lsService.setLSData('cart', this.cart);
-    this.router.navigate(['user/cart']);
+
+  increaseQuantity(productId: number): void {
+    this.cartService.increaseQuantity(productId);
   }
 
+  decreaseQuantity(productId: number): void {
+    this.cartService.decreaseQuantity(productId);
   }
+
+  // increment() {
+  //   this.count++;
+  // }
+  // decrement() {
+  //   this.count--;
+  // }
+
+  // getCount() : void {
+  //   console.log(this.count);
+  // }
 }

@@ -39,6 +39,29 @@ export class CartService {
     this.lsService.setLSData('cart', this.cartDetail);
   }
 
+  increaseQuantity(productId: number): void {
+    let product = this.cartDetail.find(item => item.id === productId);
+    if(product) {
+      this.addCart(product);
+    }
+  }
+
+  decreaseQuantity(productId: number): void {
+    console.log(productId)
+    /** checking if the product exists */
+    let productIndex = this.cartDetail.findIndex(item => item.id === productId);
+    if(productIndex >= 0) {
+      /** checking for quantity */
+      if(this.cartDetail[productIndex].quantity > 1) {
+        this.cartDetail[productIndex].quantity -= 1;
+      } else {
+        this.cartDetail.splice(productIndex, 1);
+      }
+      this.changeCart();
+      this.lsService.setLSData('cart', this.cartDetail);
+    }
+  }
+
   changeCart(): void {
     this.cart.next(this.cartDetail);
   }

@@ -54,18 +54,12 @@ export class HeaderComponent {
     this.cartService.cart.subscribe(cart => {
       console.log(cart);
       this.cart = cart;
-      this.getCartLength();
+      this.cartLength = this.getCartLength();
     });
   }
 
-  getCartLength(): void {
-    this.cartLength = this.cart.length; // find out the exact count as homework
-    const sumOfQuantities = this.cart.reduce((accumulator, currentObject) => {
-      return accumulator + currentObject.quantity;
-    }, 0);
-    this.cartLength = sumOfQuantities;
-    
-    console.log(sumOfQuantities);
+  getCartLength(): number {
+    return this.cart.reduce((accumulator, currentObject) => accumulator + currentObject.quantity, 0);
   }
 
   goToCart(): void {

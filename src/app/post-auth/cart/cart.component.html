@@ -1,5 +1,8 @@
 <div class="container text-center">
     <div class="row align-items-start">
+        <!-- <button (click)="increment()">Add</button>
+        <button (click)="decrement()">Remove</button>
+        <h1>Count: {{count}} {{getCount()}}</h1> -->
         <div class="col product-card" *ngFor="let item of cart">
             <div class="card" style="width: 18rem;">
                 <div [ngStyle]="{background: 'url(' + item.images[0] + ')', height: '10rem', 'background-size': 'cover'}"></div>
@@ -10,8 +13,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="original-price-cut">${{item.price}} - ({{item.rating}}*)</div>
-                        <div>Quantity : {{item.quantity}}</div>
-                        <div><button class="btn btn-outline-success" type="button" (click)="removeCart(item.id)">Remove</button></div>
+                        <div>
+                            <button type="button" class="btn btn-danger" (click)="decreaseQuantity(item.id)">-</button>
+                            Quantity : {{item.quantity}}
+                            <button type="button" class="btn btn-success" (click)="increaseQuantity(item.id)">+</button>
+                        </div>
+                        <!-- <div><button class="btn btn-outline-success" type="button" (click)="removeCart(item.id)">Remove</button></div> -->
                     </li>
                 </ul>
                 <!-- <div class="card-body">
@@ -21,5 +28,10 @@
               </div>
               
         </div>
+        <div *ngIf="cart.length === 0">Your cart is empty. Try adding some products</div>
     </div>
 </div>
+
+1. Add a proceed to add address button
+2. create user-address-list component where by default it will show "you dont have any adress stored" and "add address" button.
+3. create a CRUD operation of addresses
