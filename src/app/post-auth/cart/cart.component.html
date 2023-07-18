@@ -1,3 +1,25 @@
-<p>cart works!</p>
-// home work: 
-make the cart functional
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col product-card" *ngFor="let item of cart">
+            <div class="card" style="width: 18rem;">
+                <div [ngStyle]="{background: 'url(' + item.images[0] + ')', height: '10rem', 'background-size': 'cover'}"></div>
+                <div class="card-body">
+                  <h5 class="card-title product-link">{{item.title}}</h5>
+                  <p class="card-text" [title]="item.description">{{ (item.description.length>60)? (item.description | slice:0:60)+'...':(item.description) }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="original-price-cut">${{item.price}} - ({{item.rating}}*)</div>
+                        <div>Quantity : {{item.quantity}}</div>
+                        <div><button class="btn btn-outline-success" type="button" (click)="removeCart(item.id)">Remove</button></div>
+                    </li>
+                </ul>
+                <!-- <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div> -->
+              </div>
+              
+        </div>
+    </div>
+</div>

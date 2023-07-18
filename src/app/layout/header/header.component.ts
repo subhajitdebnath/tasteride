@@ -60,6 +60,12 @@ export class HeaderComponent {
 
   getCartLength(): void {
     this.cartLength = this.cart.length; // find out the exact count as homework
+    const sumOfQuantities = this.cart.reduce((accumulator, currentObject) => {
+      return accumulator + currentObject.quantity;
+    }, 0);
+    this.cartLength = sumOfQuantities;
+    
+    console.log(sumOfQuantities);
   }
 
   goToCart(): void {
