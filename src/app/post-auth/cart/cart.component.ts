@@ -35,6 +35,9 @@ export class CartComponent {
   decreaseQuantity(productId: number): void {
     this.cartService.decreaseQuantity(productId);
   }
+  addAddress():void{
+    this.router.navigate(['user/address']);
+  }
 
   // increment() {
   //   this.count++;

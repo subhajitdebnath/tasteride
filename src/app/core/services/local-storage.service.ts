@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ClickType } from '@swimlane/ngx-datatable';
 
 @Injectable({
   providedIn: 'root'

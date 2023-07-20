@@ -1,0 +1,29 @@
+<div *ngIf="address.length === 0"><div *ngIf="address.length === 0"><h2>You dont have any address stored</h2></div></div>
+<div *ngIf="address.length === 0">
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit(addressForm)">
+    <div class="mb-3">
+    <label>Street:</label>
+    <input type="text"  class="form-control" id="street" formControlName="street" />
+    <div id="streetHelp" class="form-text" *ngIf="addressForm.get('street')?.invalid && formSubmitted">Please enter a valid street</div>
+    </div>
+    <div class="mb-3">
+    <label>City:</label>
+    <input type="text" class="form-control" id="city" formControlName="city" />
+    <div id="cityHelp" class="form-text" *ngIf="addressForm.get('city')?.invalid && formSubmitted">Please enter a valid city</div>
+    </div>
+    <div class="mb-3">
+    <label>PostalCode:</label>
+    <input type="text" class="form-control" id="postalCode" formControlName="postalCode" />
+    <div id="postalCodeHelp" class="form-text" *ngIf="addressForm.get('postalCode')?.invalid && formSubmitted">Please enter a valid postalcode</div>
+    </div>
+    <div class="signin-btn" >
+        <button type="submit" class="btn btn-primary">Add Address</button>
+    </div>
+</form>
+</div>
+<div *ngIf="address.length > 0">
+    <label><h5>Street : {{address[0].street}}</h5></label><br>
+    <label><h5>City : {{address[0].city}}</h5></label><br>
+    <label><h5>PostalCode : {{address[0].postalCode}}</h5></label><br>
+    <div><button class="btn btn-outline-success" type="button" (click)="deleteAddress()">Delete Address</button></div>
+</div>
