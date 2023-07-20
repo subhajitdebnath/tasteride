@@ -36,7 +36,7 @@ export class SearchComponent {
   searchProducts(): void {
     this.apiService.searchProducts(this.keyword).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.products = res.products;
       },
       error: err => console.error(err),
