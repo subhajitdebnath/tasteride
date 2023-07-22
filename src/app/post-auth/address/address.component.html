@@ -1,14 +1,17 @@
 <div *ngIf="address.length === 0"><div *ngIf="address.length === 0"><h2>You dont have any address stored</h2></div></div>
-<div *ngIf="address.length === 0">
+<div>
     <div>
         <button class="btn btn-outline-success" type="button" (click)="addAddress()">Add Address</button>
     </div>
 </div>
-<div *ngIf="address.length > 0">
-    <div class="col product-card" *ngFor="let item of address">
-    <label><h5>Street : {{item.street}}</h5></label><br>
-    <label><h5>City : {{item.city}}</h5></label><br>
-    <label><h5>PostalCode : {{item.postalCode}}</h5></label><br>
-    <div><button class="btn btn-outline-success" type="button" (click)="deleteAddress(item.street)">Delete Address</button></div>
+
+
+<div class="card" style="width: 18rem;" *ngFor="let item of address">
+    <div class="card-body">
+      <h5 class="card-title">Street : {{item.street}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">City : {{item.city}}</h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary">PostalCode : {{item.postalCode}}</h6>
+      <a href="javascript:void(0);" (click)="deleteAddress(item.id)" class="card-link">Delete</a>
+      <a href="javascript:void(0);" (click)="selectAddress(item.id)" class="card-link">Select</a>
     </div>
 </div>

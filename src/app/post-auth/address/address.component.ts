@@ -10,48 +10,31 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   styleUrls: ['./address.component.scss']
 })
 export class AddressComponent {
-  addressForm: FormGroup;
   address: any[]=[];
-  formSubmitted = false;
-  street: string;
-  postalCode: string;
-  city: string;
   constructor(
-    private fb: FormBuilder,
     private addressService: AddressService,
-    private lsService: LocalStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.addressForm = this.fb.group({
-      street: ['', [Validators.required, Validators.required]],
-      city: ['', [Validators.required, Validators.required]],
-      postalCode: ['', [Validators.required, Validators.required]]
-
-    });
     console.log(this.addressService.addressDetail);
-    this.address = this.addressService.getAddress();
-    if (this.address===null){
-      this.address = [];
-    }
     this.addressDetails();
   }
   addressDetails(): void {
-    this.address = this.addressService.getAddress();
-    if (this.address===null){
-      this.address = [];
-    }
-
+    this.address = this.addressService.addressDetail;
   }
-  deleteAddress(street: string):void{
-    this.addressService.deleteAddress(street);
+  deleteAddress(id: string):void{
+    this.addressService.deleteAddress(id);
     this.address = this.addressService.addressDetail;
     console.log(this.address);
     this.router.navigate(['user/address']);
   }
   addAddress():void{
     this.router.navigate(['user/addressdetail']);
+  }
+
+  selectAddress(id: string): void {
+
   }
 
 }
