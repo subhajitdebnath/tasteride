@@ -9,6 +9,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { SearchComponent } from './search/search.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutModule,
     NgxDatatableModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AuthIndependentModule { }

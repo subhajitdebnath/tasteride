@@ -72,4 +72,8 @@ export class SearchComponent {
 
     this.searchProducts();
   }
+
+  getData() {
+    console.log('hi')
+  }
 }

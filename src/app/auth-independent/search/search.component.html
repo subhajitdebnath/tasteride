@@ -41,14 +41,14 @@
             <div class="card" style="width: 18rem;">
                 <div [ngStyle]="{background: 'url(' + product.images[0] + ')', height: '10rem', 'background-size': 'cover'}"></div>
                 <div class="card-body">
-                  <h5 class="card-title product-link"><a (click)="toProductDetail(product.id)">{{product.title}}</a></h5>
-                  <p class="card-text" [title]="product.description">{{ (product.description.length>60)? (product.description | slice:0:60)+'...':(product.description) }}</p>
+                  <h5 class="card-title product-link"><a (click)="toProductDetail(product.id)">{{product.title | uppercase}}</a></h5>
+                  <p class="card-text" [title]="product.description">{{ (product.description.length>60)? (product.description | lowercase | slice:0:60)+'...':(product.description) }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <span class="original-price-cut">${{product.price + product.discountPercentage}}</span>
-                        ${{product.price}}
-                        ({{product.rating}}*)
+                        {{product.price | currency: 'USD'}}
+                        ({{product.rating | multiplier: 3}}*)
                     </li>
                 </ul>
                 <!-- <div class="card-body">
@@ -57,5 +57,6 @@
                 </div> -->
               </div>
         </div>
+        <!-- {{getData()}} -->
     </div>
 </div>
