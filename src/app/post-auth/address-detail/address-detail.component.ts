@@ -5,13 +5,14 @@ import { AddressService } from 'src/app/core/services/address.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
-  selector: 'app-address',
-  templateUrl: './address.component.html',
-  styleUrls: ['./address.component.scss']
+  selector: 'app-address-detail',
+  templateUrl: './address-detail.component.html',
+  styleUrls: ['./address-detail.component.scss']
 })
-export class AddressComponent {
+export class AddressDetailComponent {
   addressForm: FormGroup;
   address: any[]=[];
+  payloadAddress: any[]=[];
   formSubmitted = false;
   street: string;
   postalCode: string;
@@ -44,14 +45,34 @@ export class AddressComponent {
     }
 
   }
+  onSubmit(form: FormGroup): void {
+    console.log(form);
+    this.formSubmitted = true;
+    this.street = form.value.street;
+    this.postalCode = form.value.postalCode;
+    this.city = form.value.city;
+    if(this.street===''||this.city===''||this.postalCode===''){
+      return;
+    }
+    this.payloadAddress[0] = {};
+    this.payloadAddress[0].street = this.street;
+    this.payloadAddress[0].city = this.city;
+    this.payloadAddress[0].postalCode = this.postalCode;
+    this.addToAddress()
+    console.log(form.value, form.valid);
+    this.addressForm.reset();
+  }
+  addToAddress(): void {
+    let addressPayload = this.payloadAddress[0];
+    console.log(addressPayload);
+    this.addressService.addAddress(addressPayload);
+  }
   deleteAddress(street: string):void{
     this.addressService.deleteAddress(street);
-    this.address = this.addressService.addressDetail;
+    this.address = [];
     console.log(this.address);
     this.router.navigate(['user/address']);
   }
-  addAddress():void{
-    this.router.navigate(['user/addressdetail']);
-  }
+
 
 }

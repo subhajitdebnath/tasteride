@@ -18,18 +18,36 @@ export class AddressService {
       this.addressDetail = add;
       this.changeAddress();
     }
+    else{
+      this.addressDetail = [];
+    }
    }
    addAddress(payload): void {
     console.log(payload);
-    
-    this.addressDetail = payload;
-    
+    //this.addressDetail = payload;
+    if(this.addressDetail === null){
+      this.addressDetail = [];
+    }
+    this.addressDetail.push(payload);
     this.changeAddress();
     this.lsService.setLSData('address', this.addressDetail);
   }
-  deleteAddress(): void{
-    this.changeAddress();
-    this.lsService.removeLSData('address');
+  deleteAddress(street: string): void{
+
+      console.log(street)
+      /** checking if the product exists */
+      let addressIndex = this.addressDetail.findIndex(item => item.street === street);
+      if(addressIndex >= 0) {
+        /** checking for address */
+          console.log(addressIndex);
+          this.addressDetail.splice(addressIndex, 1);
+          console.log(this.addressDetail);
+        }
+        this.changeAddress();
+        this.lsService.setLSData('address', this.addressDetail);
+  
+    //this.changeAddress();
+    //this.lsService.removeLSData('address');
   }
   getAddress(): any[]{
     this.changeAddress();

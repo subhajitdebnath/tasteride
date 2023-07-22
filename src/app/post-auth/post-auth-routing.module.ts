@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { AddressComponent } from './address/address.component';
+import { AddressDetailComponent } from './address-detail/address-detail.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,12 @@ const routes: Routes = [
   {
     path: 'address',
     component: AddressComponent
+  },
+  {
+    path: 'addressdetail',
+    component: AddressDetailComponent
   }
+
 ];
 
 @NgModule({

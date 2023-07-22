@@ -7,13 +7,15 @@ import { CartComponent } from './cart/cart.component';
 import { LayoutModule } from '../layout/layout.module';
 import { AddressComponent } from './address/address.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddressDetailComponent } from './address-detail/address-detail.component';
 
 
 @NgModule({
   declarations: [
     PostAuthComponent,
     CartComponent,
-    AddressComponent
+    AddressComponent,
+    AddressDetailComponent
   ],
   imports: [
     CommonModule,

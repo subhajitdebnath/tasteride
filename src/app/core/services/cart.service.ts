@@ -25,7 +25,7 @@ export class CartService {
   }
 
   addCart(payload): void {
-    // console.log(payload);
+     console.log(payload);
 
     /** Checking if product already exists in the cart */
     let productIndex = this.cartDetail.findIndex(item => item.id === payload.id);

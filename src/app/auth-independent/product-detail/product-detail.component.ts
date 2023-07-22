@@ -556,6 +556,8 @@ export class ProductDetailComponent {
     let productPayload = {
       ...this.product, quantity:1
     };
+    console.log(productPayload);
+    console.log(this.product);
     this.cartService.addCart(productPayload);
   }
 }

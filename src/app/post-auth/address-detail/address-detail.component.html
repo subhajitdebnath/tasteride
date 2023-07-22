@@ -1,0 +1,22 @@
+<div>
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit(addressForm)">
+      <div class="mb-3">
+      <label>Street:</label>
+      <input type="text"  class="form-control" id="street" formControlName="street" />
+      <div id="streetHelp" class="form-text" *ngIf="addressForm.get('street')?.invalid && formSubmitted">Please enter a valid street</div>
+      </div>
+      <div class="mb-3">
+      <label>City:</label>
+      <input type="text" class="form-control" id="city" formControlName="city" />
+      <div id="cityHelp" class="form-text" *ngIf="addressForm.get('city')?.invalid && formSubmitted">Please enter a valid city</div>
+      </div>
+      <div class="mb-3">
+      <label>PostalCode:</label>
+      <input type="text" class="form-control" id="postalCode" formControlName="postalCode" />
+      <div id="postalCodeHelp" class="form-text" *ngIf="addressForm.get('postalCode')?.invalid && formSubmitted">Please enter a valid postalcode</div>
+      </div>
+      <div class="signin-btn" >
+          <button type="submit" class="btn btn-primary">Add Address</button>
+      </div>
+  </form>
+  </div>
