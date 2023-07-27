@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'addressdetail',
     component: AddressDetailComponent
+  },
+  {
+    path: 'addressdetail/:addressId',
+    component: AddressDetailComponent
   }
 
 ];

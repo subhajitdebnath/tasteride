@@ -16,7 +16,8 @@
       <div id="postalCodeHelp" class="form-text" *ngIf="addressForm.get('postalCode')?.invalid && formSubmitted">Please enter a valid postalcode</div>
       </div>
       <div class="signin-btn" >
-          <button type="submit" class="btn btn-primary">Add Address</button>
+          <button type="submit" class="btn btn-primary" *ngIf="!addressId">Add Address</button>
+          <button type="submit" class="btn btn-primary" *ngIf="addressId">Update Address</button>
       </div>
   </form>
   </div>

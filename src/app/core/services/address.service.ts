@@ -18,20 +18,17 @@ export class AddressService {
   ) {
     this.addressDetail = this.getAddress();
   }
-   addAddress(payload): void {
-    if(this.editMode === true)
-    {
-      let addressIndex = this.addressDetail.findIndex(item => item.id === this.id);
-    if(addressIndex >= 0) {
-      console.log(addressIndex);
-      this.addressDetail.splice(addressIndex, 1);
-      this.editMode = false;
-      console.log(this.addressDetail);
+  
+  addAddress(payload): void {
+    if(payload.submitType === 'edit') {
+      let addressIndex = this.addressDetail.findIndex(item => item.id === payload.addressId);
+      this.addressDetail[addressIndex] = payload;
+    } else {
+      this.addressDetail.push(payload);
     }
-    }
-    this.addressDetail.push(payload);
     this.lsService.setLSData('address', this.addressDetail);
   }
+
   deleteAddress(id: string): void {
     console.log(id)
     // return;
@@ -45,17 +42,22 @@ export class AddressService {
     }
     this.lsService.setLSData('address', this.addressDetail);
   }
-  editAddress(id: string): any {
-    console.log(id)
-    // return;
-    let address = this.addressDetail.find(item => item.id === id);
-    if(address != null) {
-      console.log(address);
-      this.editAddressDetail =address;
-      this.id = id;
-      this.router.navigate(['user/addressdetail']);
-    }
+
+  getAddressDetailById(id: string) {
+    return this.addressDetail.find(item => item.id === id);
   }
+
+  // editAddress(id: string): any {
+  //   console.log(id)
+  //   // return;
+  //   let address = this.addressDetail.find(item => item.id === id);
+  //   if(address != null) {
+  //     console.log(address);
+  //     this.editAddressDetail =address;
+  //     this.id = id;
+  //     this.router.navigate(['user/addressdetail']);
+  //   }
+  // }
   getAddress(): any[]{
     let addressData = this.lsService.getLSData('address');
     if(addressData) {

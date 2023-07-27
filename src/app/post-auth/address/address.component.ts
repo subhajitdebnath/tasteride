@@ -37,9 +37,10 @@ export class AddressComponent {
 
   }
   editAddress(id: string): void {
-    this.addressService.editMode = true;
-    console.log(id);
-    this.addressService.editAddress(id);
+    this.router.navigate(['user/addressdetail/'+ id]);
+    // this.addressService.editMode = true;
+    // console.log(id);
+    // this.addressService.editAddress(id);
 
 
   }
