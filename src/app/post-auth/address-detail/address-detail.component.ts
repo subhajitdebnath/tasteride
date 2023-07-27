@@ -13,6 +13,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class AddressDetailComponent {
   addressForm: FormGroup;
   formSubmitted = false;
+  editMode = false;
+  existingAddress: any= {
+    street: '',
+    city: '',
+    postalCode: ''
+  };
+
   constructor(
     private fb: FormBuilder,
     private addressService: AddressService,
@@ -26,6 +33,16 @@ export class AddressDetailComponent {
       postalCode: ['', [Validators.required, Validators.required]]
 
     });
+    console.log(this.addressService.editMode);
+    this.editMode = this.addressService.editMode;
+    if (this.editMode){
+    this.existingAddress = this.addressService.editAddressDetail;
+    this.addressForm = this.fb.group({
+      street: [this.existingAddress.street, Validators.required],
+      city: [this.existingAddress.city, Validators.required],
+      postalCode: [this.existingAddress.postalCode, Validators.required]
+    });
+    }
   }
   onSubmit(form: FormGroup): void {
     console.log(form);

@@ -2,7 +2,7 @@
     <form [formGroup]="addressForm" (ngSubmit)="onSubmit(addressForm)">
       <div class="mb-3">
       <label>Street:</label>
-      <input type="text"  class="form-control" id="street" formControlName="street" />
+      <input type="text"   class="form-control" id="street" formControlName="street" />
       <div id="streetHelp" class="form-text" *ngIf="addressForm.get('street')?.invalid && formSubmitted">Please enter a valid street</div>
       </div>
       <div class="mb-3">

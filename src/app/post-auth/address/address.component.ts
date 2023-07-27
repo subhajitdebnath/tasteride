@@ -36,5 +36,12 @@ export class AddressComponent {
   selectAddress(id: string): void {
 
   }
+  editAddress(id: string): void {
+    this.addressService.editMode = true;
+    console.log(id);
+    this.addressService.editAddress(id);
+
+
+  }
 
 }
