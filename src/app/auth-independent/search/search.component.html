@@ -38,7 +38,7 @@
     <h2>Total Products: {{products.length}}</h2>
     <div class="row align-items-start">
         <div class="col product-card" *ngFor="let product of products">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" appFocus [bgColor]="'red'">
                 <div [ngStyle]="{background: 'url(' + product.images[0] + ')', height: '10rem', 'background-size': 'cover'}"></div>
                 <div class="card-body">
                   <h5 class="card-title product-link"><a (click)="toProductDetail(product.id)">{{product.title | uppercase}}</a></h5>

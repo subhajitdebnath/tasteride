@@ -1,4 +1,5 @@
 <div>
+    <div [ngStyle]="{'background': addressId ? 'red' : 'green'}">Attribute Directive</div>
     <form [formGroup]="addressForm" (ngSubmit)="onSubmit(addressForm)">
       <div class="mb-3">
       <label>Street:</label>

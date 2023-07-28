@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MultiplierPipe } from './pipes/multiplier.pipe';
+import { FocusDirective } from './directives/focus.directive';
 
 
 
 @NgModule({
   declarations: [
-    MultiplierPipe
+    MultiplierPipe,
+    FocusDirective
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    MultiplierPipe
+    MultiplierPipe,
+    FocusDirective
   ]
 })
 export class SharedModule { }
